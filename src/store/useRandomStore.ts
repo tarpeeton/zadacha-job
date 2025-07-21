@@ -1,6 +1,7 @@
 import { create } from "zustand";
 import { IRandomStore } from "../types/useRandomStore";
 import axios from "axios";
+import { BASE_URL } from "@/constants/baseUrl";
 
 export const useRandomStore = create<IRandomStore>((set, get) => ({
   inputType: "specific",
@@ -68,8 +69,8 @@ export const useRandomStore = create<IRandomStore>((set, get) => ({
     try {
       const url =
         inputType === "random"
-          ? `http://numbersapi.com/random/${category}`
-          : `http://numbersapi.com/${numberInput}/${category}`;
+          ? `${BASE_URL}/random/${category}`
+          : `${BASE_URL}/${numberInput}/${category}`;
 
       const response = await axios.get(url);
 
